@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписане</title>
+    <style>
+        /* Стили для таблицы */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #cfecd0, #ffc5ca);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            border-radius: 10px;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: linear-gradient(to bottom, #f2f2f2, #e6e6e6);
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        td {
+            font-size: 1.1rem;
+            color: #444;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        /* Анимация появления таблицы */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        .controls button {
+            padding: 8px 16px;
+            font-size: 1rem;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color: #fff;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            color: #555;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #f2f2f2;
+        }
+
+        table {
+            width: 90%;
+            max-width: 800px;
+            border-collapse: collapse;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+
+        td {
+            color: #444;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Новые стили для ячеек с предметами и домашними заданиями */
+
+        .subject {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .homework {
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .homework::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Адаптивные стили */
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .controls button {
+                font-size: 0.9rem;
+            }
+
+            table {
+                width: 95%;
+            }
+        }
+
+        /* Анимация появления таблицы */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Расписание</h1>
+<div class="controls">
+    <button id="prevWeek">Предыдущая неделя</button>
+    <span id="currentDate"></span>
+    <button id="nextWeek">Следующая неделя</button>
+</div>
+<table>
+    <tr>
+        <th>День</th>
+        <th>Предметы</th>
+        <th>Домашнее задание</th>
+    </tr>
+    <!-- Сюда будет вставлено расписание и домашнее задание -->
+</table>
+
+<script>
+    const currentDateElement = document.getElementById('currentDate');
+    const prevWeekButton = document.getElementById('prevWeek');
+    const nextWeekButton = document.getElementById('nextWeek');
+
+    const scheduleData = {
+        // Ваше расписание для двух недель
+        // Например:
+        week1: {
+            Понедельник: ['Разговор о важном', 'Литература', 'Обществознание', 'Музыка', 'Физкультура', 'Изобразительное искусство'],
+            Вторник: ['Биология', 'Русский язык', 'Алгебра', 'Геометрия', 'Английский язык', 'Физкультура', 'География'],
+            Среда: ['Информатика', 'Русский язык', 'Русский язык', 'Алгебра', 'Физика', 'Технология', 'Технология'],
+            Четверг: ['География', 'Русский язык', 'Литература', 'Геометрия', 'Английский язык', 'История', 'История'],
+            Пятница: ['Информатика', 'Алгебра', 'Теория вероятности', 'Английский язык', 'Физкультура', 'Физика', 'История'],
+            // Добавьте остальные дни недели
+        },
+        week2: {
+            Monday: ['...', '...', '...'],
+            Tuesday: ['...', '...', '...'],
+            // Добавьте остальные дни недели
+        }
+        // Добавьте расписание для обеих недель
+    };
+
+    const homeworkData = {
+        // Ваше домашнее задание для двух недель
+        // Например:
+        week1: {
+            Понедельник: {
+            },
+            Вторник: {
+            },
+            Среда: {
+                'Информатика': ['Пар. 2.2, стр. 64 - 70 конспект кратко'],
+                'Русский язык': ['Повторение (была творческая работа)'],
+                'Алгебра': ['#305, 311, 312'],
+                'Физика': ['Повторение'],
+                'Технология': ['...'],
+            }
+        },
+        week2: {
+            '...': '...',
+            '...': '...',
+            // Добавьте остальные предметы и домашнее задание
+        }
+        // Добавьте домашнее задание для обеих недель
+    };
+
+
+    let currentWeek = 'week1';
+
+    function setFontSizeBasedOnLength(element) {
+        const text = element.textContent.trim();
+        const textLength = text.length;
+
+        if (textLength < 50) {
+            element.style.fontSize = '1rem'; // Размер текста, если количество символов меньше 50
+        } else if (textLength >= 50 && textLength < 100) {
+            element.style.fontSize = '0.9rem'; // Размер текста, если количество символов от 50 до 99
+        } else {
+            element.style.fontSize = '0.8rem'; // Размер текста, если количество символов 100 и более
+        }
+    }
+
+    function renderSchedule(week) {
+        const scheduleTable = document.querySelector('table');
+        scheduleTable.innerHTML = '<tr><th>День</th><th>Предмет</th><th>Домашнее задание</th></tr>';
+
+        for (const [day, subjects] of Object.entries(scheduleData[week])) {
+            const row = document.createElement('tr');
+            const dayCell = document.createElement('td');
+            dayCell.textContent = day;
+            row.appendChild(dayCell);
+
+            const subjectsCell = document.createElement('td');
+            const subjectsList = document.createElement('ul');
+            subjects.forEach(subject => {
+                const listItem = document.createElement('li');
+                listItem.textContent = subject;
+                listItem.classList.add('subject'); // Добавляем класс для предмета
+                subjectsList.appendChild(listItem);
+            });
+            subjectsCell.appendChild(subjectsList);
+            row.appendChild(subjectsCell);
+
+            const homeworkCell = document.createElement('td');
+            const homeworkList = document.createElement('ul');
+            subjects.forEach(subject => {
+                const listItem = document.createElement('li');
+                const homework = homeworkData[week][day][subject] || 'Не найдено';
+                listItem.textContent = homework + '\n';
+                listItem.classList.add('homework'); // Добавляем класс для домашнего задания
+                homeworkList.appendChild(listItem);
+                setFontSizeBasedOnLength(listItem);
+            });
+            homeworkCell.appendChild(homeworkList);
+            row.appendChild(homeworkCell);
+
+            scheduleTable.appendChild(row);
+        }
+    }
+
+    function updateCurrentDate() {
+        currentDateElement.textContent = `неделя: ${currentWeek}`;
+    }
+
+    prevWeekButton.addEventListener('click', () => {
+        currentWeek = currentWeek === 'week1' ? 'week2' : 'week1';
+        renderSchedule(currentWeek);
+        updateCurrentDate();
+    });
+
+    nextWeekButton.addEventListener('click', () => {
+        currentWeek = currentWeek === 'week1' ? 'week2' : 'week1';
+        renderSchedule(currentWeek);
+        updateCurrentDate();
+    });
+
+    renderSchedule(currentWeek);
+    updateCurrentDate();
+</script>
+</body>
+</html>
